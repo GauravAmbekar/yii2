@@ -132,11 +132,14 @@ class BranchesController extends Controller
     }
     
      public function actionLists($id){
-        $countBranches = Branches::find()->where(['branch_id' => $id])->count();
-        $branches = Branches::find()->where(['branch_id' => $id])->orderBy('branch_id DESC')->all();
+         
+        $countBranches = Branches::find()->where(['companies_company_id' => $id])->count();
+         
+        $branches = Branches::find()->where(['companies_company_id' => $id])->all();
+         
         if($countBranches > 0) {
           foreach($branches as $branch){
-               echo "<option value='".$branch->branch_id."'>".$branch->$branch_name."</option>";
+               echo "<option value='".$branch->branch_id."'>".$branch->branch_name."</option>";
           }
      }
      else{
